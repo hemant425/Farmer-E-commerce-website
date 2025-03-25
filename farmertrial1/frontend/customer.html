@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Available Products</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .product { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 200px; }
+        img { width: 150px; height: 150px; object-fit: cover; }
+        button { margin: 5px; padding: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Available Products</h1>
+    <a href="index.html"><button>Back to Marketplace</button></a>
+    <a href="cart.html"><button>Go to Cart</button></a>
+    
+    <div id="products"></div>
+
+    <script>
+        function loadProducts() {
+            fetch('/products')
+            .then(response => response.json())
+            .then(products => {
+                document.getElementById('products').innerHTML = products.map(product =>
+                    `<div class="product">
+                        <h3>${product.name}</h3>
+                        <p>Price: $${product.price}</p>
+                        <p>Quantity: ${product.kg} KG</p>
+                        <p><strong>Farmer:</strong> ${product.farmer || 'Unknown'}</p>
+                        <img src="/uploads/${product.image}" onerror="this.src='https://via.placeholder.com/150'">
+                        <br>
+                        <button onclick="addToCart('${product.name}', ${product.price}, '${product.image}', ${product.kg}, '${product.farmer || "Unknown"}')">Add to Cart</button>
+                    </div>`
+                ).join('');
+            })
+            .catch(error => console.error("Error loading products:", error));
+        }
+
+        function addToCart(name, price, image, kg, farmer) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let existingItem = cart.find(item => item.name === name);
+
+            if (existingItem) {
+                existingItem.kg += kg;
+            } else {
+                cart.push({ name, price, image, kg, farmer }); // Store farmer name in cart
+            }
+
+            localStorage.setItem("cart", JSON.stringify(cart));
+            alert(`${name} added to cart!`);
+        }
+
+        loadProducts();
+    </script>
+</body>
+</html>

@@ -1,0 +1,128 @@
+[
+    {
+        "name": "tomato",
+        "price": "20",
+        "kg": "1",
+        "farmer": "hemant",
+        "image": "tomato.jpeg"
+    },
+    {
+        "name": "Mango",
+        "price": "150",
+        "kg": "1",
+        "farmer": "Vishnu",
+        "image": "download.jpeg"
+    },
+    {
+        "name": "Orange",
+        "price": "200",
+        "kg": "3",
+        "farmer": "Gosh",
+        "image": "orange.jpeg"
+    },
+    {
+        "name": "Cucumber",
+        "price": "10",
+        "kg": "1",
+        "farmer": "Vivek",
+        "image": "cucmber.jpeg"
+    },
+    {
+        "name": "Watermelon",
+        "price": "100",
+        "kg": "2",
+        "farmer": "Appu",
+        "image": "1000104995.jpg"
+    },
+    {
+        "name": "Jackfruit",
+        "price": "500",
+        "kg": "4",
+        "farmer": "Monish",
+        "image": "1000104996.jpg"
+    },
+    {
+        "name": "Apple",
+        "price": "80",
+        "kg": "1",
+        "farmer": "Ravi",
+        "image": "1000104997.jpg"
+    },
+    {
+        "name": "Cabbage",
+        "price": "40",
+        "kg": "1",
+        "farmer": "Veeresh",
+        "image": "1000104998.jpg"
+    },
+    {
+        "name": "Beetroot",
+        "price": "50",
+        "kg": "1",
+        "farmer": "Aakash",
+        "image": "1000104999.jpg"
+    },
+    {
+        "name": "Radish",
+        "price": "30",
+        "kg": "1",
+        "farmer": "Giri",
+        "image": "1000105000.jpg"
+    },
+    {
+        "name": "Capsicum",
+        "price": "40",
+        "kg": "1",
+        "farmer": "Adhi",
+        "image": "1000105001.jpg"
+    },
+    {
+        "name": "Onion",
+        "price": "80",
+        "kg": "1",
+        "farmer": "Sathya",
+        "image": "1000105002.jpg"
+    },
+    {
+        "name": "Corn",
+        "price": "50",
+        "kg": "1",
+        "farmer": "Hari",
+        "image": "1000105003.png"
+    },
+    {
+        "name": "Bitter gourd",
+        "price": "40",
+        "kg": "1",
+        "farmer": "Sanjay",
+        "image": "1000105004.png"
+    },
+    {
+        "name": "Carrot",
+        "price": "30",
+        "kg": "1",
+        "farmer": "Hemanth",
+        "image": "1000105005.jpg"
+    },
+    {
+        "name": "Green beans",
+        "price": "40",
+        "kg": "1",
+        "farmer": "Jagan",
+        "image": "1000105006.jpg"
+    },
+    {
+        "name": "Mashroom",
+        "price": "80",
+        "kg": "1",
+        "farmer": "Varun",
+        "image": "1000105007.webp"
+    },
+    {
+        "name": "Pumpkin",
+        "price": "100",
+        "kg": "1",
+        "farmer": "Kishan",
+        "image": "1000105008.jpg"
+    }
+]

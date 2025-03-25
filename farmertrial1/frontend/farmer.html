@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Marketplace</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .product { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 200px; }
+        img { width: 150px; height: 150px; object-fit: cover; }
+        button { margin: 5px; padding: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Marketplace</h1>
+
+    <!-- Buttons -->
+    <button onclick="showAddItemForm()">Add Item</button>
+    <button onclick="window.location.href='index.html'">Back</button>
+    <button onclick="window.location.href='messages.html'" style="float: right; margin-right: 10px;">Messages</button>
+
+    <!-- Add Item Form -->
+    <div id="addItemForm" style="display:none;">
+        <h2 id="formTitle">Add Product</h2>
+        <form id="productForm">
+            <input type="hidden" id="editMode" value="false">
+            <input type="hidden" id="originalName">
+            <input type="text" id="name" placeholder="Product Name" required><br>
+            <input type="text" id="price" placeholder="Price" required><br>
+            <input type="number" id="kg" placeholder="Quantity (KG)" step="0.01" required><br>
+            <input type="text" id="farmer" placeholder="Farmer Name" required><br>
+            <input type="file" id="image" accept="image/*"><br>
+            <button type="submit">Save Item</button>
+            <button type="button" onclick="cancelEdit()">Cancel</button>
+        </form>
+    </div>
+
+    <h2>Available Products</h2>
+    <div id="products"></div>
+
+    <script>
+        function showAddItemForm() {
+            document.getElementById('formTitle').innerText = "Add Product";
+            document.getElementById('editMode').value = "false";
+            document.getElementById('name').value = "";
+            document.getElementById('price').value = "";
+            document.getElementById('kg').value = "";
+            document.getElementById('farmer').value = "";
+            document.getElementById('originalName').value = "";
+            document.getElementById('addItemForm').style.display = 'block';
+        }
+
+        function cancelEdit() {
+            document.getElementById('addItemForm').style.display = 'none';
+        }
+
+        function goBack() {
+            history.back();
+        }
+
+        document.getElementById("productForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+            let formData = new FormData();
+            formData.append("name", document.getElementById("name").value);
+            formData.append("price", document.getElementById("price").value);
+            formData.append("kg", document.getElementById("kg").value);
+            formData.append("farmer", document.getElementById("farmer").value);
+            formData.append("image", document.getElementById("image").files[0]);
+            
+            let editMode = document.getElementById("editMode").value === "true";
+            if (editMode) {
+                formData.append("originalName", document.getElementById("originalName").value);
+                fetch('/edit_item', { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    cancelEdit();
+                    loadProducts();
+                })
+                .catch(error => console.error("Error editing product:", error));
+            } else {
+                fetch('/add_item', { method: 'POST', body: formData })
+                .then(response => response.json())
+                .then(data => {
+                    alert(data.message);
+                    cancelEdit();
+                    loadProducts();
+                })
+                .catch(error => console.error("Error adding product:", error));
+            }
+        });
+
+        function deleteProduct(name) {
+            fetch('/delete_item', {
+                method: 'POST',
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ "name": name })
+            })
+            .then(response => response.json())
+            .then(data => { 
+                alert(data.message);
+                loadProducts();
+            })
+            .catch(error => console.error("Error deleting product:", error));
+        }
+
+        function editProduct(name, price, kg, farmer) {
+            document.getElementById('formTitle').innerText = "Edit Product";
+            document.getElementById('editMode').value = "true";
+            document.getElementById('originalName').value = name;
+            document.getElementById('name').value = name;
+            document.getElementById('price').value = price;
+            document.getElementById('kg').value = kg;
+            document.getElementById('farmer').value = farmer;
+            document.getElementById('addItemForm').style.display = 'block';
+        }
+
+        function loadProducts() {
+            fetch('/products')
+            .then(response => response.json())
+            .then(products => {
+                document.getElementById('products').innerHTML = products.map(product =>
+                    `<div class="product">
+                        <h3>${product.name}</h3>
+                        <p>Price: $${product.price}</p>
+                        <p>Quantity: ${product.kg} KG</p>
+                        <p>Farmer: ${product.farmer}</p>
+                        <img src="/uploads/${product.image}" onerror="this.src='https://via.placeholder.com/150'"><br>
+                        <button onclick="editProduct('${product.name}', '${product.price}', '${product.kg}', '${product.farmer}')">Edit</button>
+                        <button onclick="deleteProduct('${product.name}')">Delete</button>
+                    </div>` 
+                ).join('');
+            });
+        }
+
+        loadProducts();
+    </script>
+</body>
+</html>

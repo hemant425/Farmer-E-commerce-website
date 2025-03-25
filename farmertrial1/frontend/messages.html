@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order Messages</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .order { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 350px; text-align: left; background-color: #f9f9f9; }
+        h1 { text-align: center; }
+        button { margin: 10px; padding: 10px 20px; cursor: pointer; font-size: 16px; background-color: #28a745; color: white; border: none; border-radius: 5px; }
+        button:hover { background-color: #218838; }
+        .accept-btn { background-color: #007bff; }
+        .accept-btn:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Placed Order Details</h1>
+    
+    <button id="backToMarketplace">Back to Marketplace</button>
+    <button id="viewOrderHistory">View Order History</button> <!-- New button -->
+
+    <div id="orderMessages"></div>
+
+    <script>
+        function loadMessages() {
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            document.getElementById('orderMessages').innerHTML = orders.length ? orders.map((order, index) =>
+                `<div class="order">
+                    <h3><b>Customer:</b> ${order.customer}</h3>
+                    <p><b>Farmer:</b> ${order.farmer}</p>
+                    <p><b>Address:</b> ${order.address}</p>
+                    <p><b>Contact:</b> ${order.phone}</p>
+                    <p><b>Order Date:</b> ${order.date}</p>
+                    <h4>Items:</h4>
+                    ${order.items.map(item =>
+                        `<p>${item.name} - ${item.kg} KG @ $${item.price} = $${(item.price * item.kg).toFixed(2)}</p>`
+                    ).join("")}
+                    <button class="accept-btn" onclick="acceptOrder(${index})">Accept</button>
+                </div>`
+            ).join('') : "<p>No new orders.</p>";
+        }
+
+        function acceptOrder(index) {
+            let orders = JSON.parse(localStorage.getItem("orders")) || [];
+            let orderHistory = JSON.parse(localStorage.getItem("orderHistory")) || [];
+
+            let acceptedOrder = orders.splice(index, 1)[0]; // Remove from current orders
+            acceptedOrder.acceptedDate = new Date().toLocaleString(); // Add acceptance timestamp
+            orderHistory.push(acceptedOrder); // Add to order history
+
+            localStorage.setItem("orders", JSON.stringify(orders));
+            localStorage.setItem("orderHistory", JSON.stringify(orderHistory));
+
+            loadMessages(); // Refresh UI
+        }
+
+        document.getElementById("backToMarketplace").addEventListener("click", function () {
+            window.location.href = "farmer.html"; // Change if needed
+        });
+
+        document.getElementById("viewOrderHistory").addEventListener("click", function () {
+            window.location.href = "order_history.html"; // Redirect to Order History
+        });
+
+        loadMessages();
+    </script>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Order History</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; padding: 20px; }
+        .order { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 350px; text-align: left; background-color: #f1f1f1; }
+        h1 { text-align: center; }
+        button { margin: 10px; padding: 10px 20px; cursor: pointer; font-size: 16px; background-color: #007bff; color: white; border: none; border-radius: 5px; }
+        button:hover { background-color: #0056b3; }
+    </style>
+</head>
+<body>
+    <h1>Order History</h1>
+    
+    <button onclick="goBackToOrders()">Back to Orders</button>
+
+    <div id="orderHistory"></div>
+
+    <script>
+        function loadOrderHistory() {
+            let history = JSON.parse(localStorage.getItem("orderHistory")) || [];
+            document.getElementById('orderHistory').innerHTML = history.length ? history.map(order =>
+                `<div class="order">
+                    <h3><b>Customer:</b> ${order.customer}</h3>
+                    <p><b>Farmer:</b> ${order.farmer}</p>
+                    <p><b>Address:</b> ${order.address}</p>
+                    <p><b>Contact:</b> ${order.phone}</p>
+                    <p><b>Order Date:</b> ${order.date}</p>
+                    <h4>Items:</h4>
+                    ${order.items.map(item =>
+                        `<p>${item.name} - ${item.kg} KG @ $${item.price} = $${(item.price * item.kg).toFixed(2)}</p>`
+                    ).join("")}
+                </div>`
+            ).join('') : "<p>No orders in history.</p>";
+        }
+
+        function goBackToOrders() {
+            window.location.href = "messages.html"; // Ensure this file exists and is correct
+        }
+
+        loadOrderHistory();
+    </script>
+</body>
+</html>

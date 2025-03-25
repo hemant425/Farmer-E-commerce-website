@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Checkout</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .form-container { width: 50%; margin: auto; text-align: left; }
+        label { font-weight: bold; display: block; margin: 5px 0; }
+        input, textarea { width: 100%; padding: 10px; margin-bottom: 10px; }
+        button { padding: 10px; cursor: pointer; margin: 5px; }
+    </style>
+</head>
+<body>
+    <h1>Checkout</h1>
+    <div class="form-container">
+        <label>Name:</label>
+        <input type="text" id="customerName" placeholder="Enter your name" required>
+
+        <label>Address:</label>
+        <textarea id="customerAddress" placeholder="Enter your address" required></textarea>
+
+        <label>Contact Number:</label>
+        <input type="tel" id="customerPhone" placeholder="Enter your phone number" required>
+
+        <h2>Order Summary</h2>
+        <div id="orderSummary"></div>
+        
+        <h3>Total: $<span id="totalAmount">0.00</span></h3>
+        <button onclick="placeOrder()">Place Order</button>
+        <button onclick="goBack()">Back</button>
+    </div>
+
+    <script>
+        function loadOrderSummary() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let total = 0;
+            let summaryHtml = cart.map(item =>
+                `<p>${item.name} - ${item.kg} KG @ $${item.price} = $${(item.price * item.kg).toFixed(2)}</p>
+                 <p><strong>Farmer:</strong> ${item.farmer || "Unknown"}</p>`
+            ).join("");
+
+            cart.forEach(item => total += (parseFloat(item.price) * parseFloat(item.kg)));
+            document.getElementById('orderSummary').innerHTML = summaryHtml;
+            document.getElementById('totalAmount').innerText = total.toFixed(2);
+        }
+
+        function placeOrder() {
+    let name = document.getElementById("customerName").value.trim();
+    let address = document.getElementById("customerAddress").value.trim();
+    let phone = document.getElementById("customerPhone").value.trim();
+    let cart = JSON.parse(localStorage.getItem("cart")) || [];
+
+    if (!name || !address || !phone) {
+        alert("Please fill in all details.");
+        return;
+    }
+
+    // Store orders with farmer name
+    let orders = JSON.parse(localStorage.getItem("orders")) || [];
+    let newOrders = cart.map(item => ({
+        customer: name,
+        farmer: item.farmer || "Unknown Farmer", 
+        address: address,
+        phone: phone,
+        date: new Date().toLocaleString(),
+        items: [item]
+    }));
+
+    orders = orders.concat(newOrders);
+    localStorage.setItem("orders", JSON.stringify(orders));
+
+    alert("Order Placed Successfully!");
+    localStorage.removeItem("cart");
+
+    // Redirect with delay for better stability
+    setTimeout(() => {
+        window.location.href = "customer.html";
+    }, 500);
+}
+
+
+        loadOrderSummary();
+    </script>
+</body>
+</html>

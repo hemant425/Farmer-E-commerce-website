@@ -1,0 +1,266 @@
+[
+    {
+        "name": "hemant",
+        "address": "yfyEFmjkvfvhhuiisdopwkf",
+        "phone": "8105009561",
+        "cart": [
+            {
+                "name": "mango",
+                "price": 125,
+                "image": "mango.jpeg",
+                "kg": 2
+            }
+        ]
+    },
+    {
+        "name": "hemant",
+        "address": "kiaugwdtvyvb jkhejvufje",
+        "phone": "8105009561",
+        "cart": [
+            {
+                "name": "tomato",
+                "price": 20,
+                "image": "tomato.jpeg",
+                "kg": 1
+            }
+        ]
+    },
+    {
+        "name": "Bharath",
+        "address": "Pvp polytechnic",
+        "phone": "8088354536",
+        "cart": [
+            {
+                "name": "tomato",
+                "price": 20,
+                "image": "tomato.jpeg",
+                "kg": 1
+            }
+        ]
+    },
+    {
+        "customer": {
+            "name": "hh gg",
+            "address": "as\nas",
+            "phone": "252526353"
+        },
+        "cart": [
+            {
+                "name": "Orange",
+                "kg": 3,
+                "price": 200
+            }
+        ]
+    },
+    {
+        "customer": {
+            "name": "hh gg",
+            "address": "as\nas",
+            "phone": "252526353"
+        },
+        "cart": [
+            {
+                "name": "Orange",
+                "kg": 3,
+                "price": 200
+            }
+        ]
+    },
+    {
+        "customer": {
+            "name": "hh gg",
+            "address": "as\nas",
+            "phone": "252526353"
+        },
+        "cart": [
+            {
+                "name": "Orange",
+                "kg": 3,
+                "price": 200
+            }
+        ]
+    },
+    {
+        "customer": {
+            "name": "hh gg",
+            "address": "as\nas",
+            "phone": "252526353"
+        },
+        "cart": [
+            {
+                "name": "Orange",
+                "kg": 3,
+                "price": 200
+            }
+        ]
+    },
+    {
+        "customer": {
+            "name": "hh gg",
+            "address": "as\nas",
+            "phone": "252526353"
+        },
+        "cart": [
+            {
+                "name": "Orange",
+                "kg": 3,
+                "price": 200
+            }
+        ]
+    },
+    {
+        "customer": {
+            "name": "hsfbvue",
+            "address": "cpofnodrhbrgjr",
+            "phone": "252526353"
+        },
+        "cart": [
+            {
+                "name": "Orange",
+                "kg": 3,
+                "price": 200
+            }
+        ]
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": [
+            {
+                "name": "Orange",
+                "price": 200,
+                "image": "orange.jpeg",
+                "kg": 6
+            },
+            {
+                "name": "Cucumber",
+                "price": 10,
+                "image": "cucmber.jpeg",
+                "kg": 1
+            }
+        ]
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": [
+            {
+                "name": "Watermelon",
+                "price": 100,
+                "image": "1000104995.jpg",
+                "kg": 2
+            }
+        ]
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": [
+            {
+                "name": "Cucumber",
+                "price": 10,
+                "image": "cucmber.jpeg",
+                "kg": 1
+            },
+            {
+                "name": "Watermelon",
+                "price": 100,
+                "image": "1000104995.jpg",
+                "kg": 2
+            }
+        ]
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": [
+            {
+                "name": "Cucumber",
+                "price": 10,
+                "image": "cucmber.jpeg",
+                "kg": 1
+            },
+            {
+                "name": "Watermelon",
+                "price": 100,
+                "image": "1000104995.jpg",
+                "kg": 2
+            },
+            {
+                "name": "Jackfruit",
+                "price": 500,
+                "image": "1000104996.jpg",
+                "kg": 4
+            }
+        ]
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": [
+            {
+                "name": "Cucumber",
+                "price": 10,
+                "image": "cucmber.jpeg",
+                "kg": 1
+            }
+        ]
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": [
+            {
+                "name": "Orange",
+                "price": 200,
+                "image": "orange.jpeg",
+                "kg": 3,
+                "farmer": "Gosh"
+            },
+            {
+                "name": "Watermelon",
+                "price": 100,
+                "image": "1000104995.jpg",
+                "kg": 2,
+                "farmer": "Appu"
+            },
+            {
+                "name": "Cucumber",
+                "price": 10,
+                "image": "cucmber.jpeg",
+                "kg": 1,
+                "farmer": "Vivek"
+            }
+        ]
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": []
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": []
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": []
+    },
+    {
+        "name": "hh gg",
+        "address": "as\nas",
+        "phone": "252526353",
+        "cart": []
+    }
+]

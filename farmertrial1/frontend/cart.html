@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Cart</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; }
+        .product { border: 1px solid #ccc; padding: 10px; margin: 10px; display: inline-block; width: 200px; }
+        img { width: 150px; height: 150px; object-fit: cover; }
+        button { margin: 5px; padding: 5px; cursor: pointer; }
+    </style>
+</head>
+<body>
+    <h1>Your Cart</h1>
+    <a href="index.html"><button>Back to Products</button></a>
+    <div id="cart"></div>
+    <h2>Total: $<span id="total">0</span></h2>
+    <button onclick="checkout()">Proceed to Checkout</button>
+
+    <script>
+        function loadCart() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            let total = 0;
+    
+            document.getElementById('cart').innerHTML = cart.length ? cart.map((item, index) =>
+                `<div class="product">
+                    <h3><b>${item.name}</b></h3>
+                    <p>Price: $${item.price}</p>
+                    <p>Quantity: ${item.kg} KG</p>
+                    <p><strong>Farmer:</strong> ${item.farmer ? item.farmer : 'Unknown'}</p>
+                    <img src="/uploads/${item.image}" onerror="this.src='https://via.placeholder.com/150'">
+                    <br>
+                    <button onclick="removeFromCart(${index})">Remove</button>
+                </div>`
+            ).join('') : "<p>Your cart is empty.</p>";
+    
+            cart.forEach(item => total += (parseFloat(item.price) * parseFloat(item.kg)));
+    
+            document.getElementById('total').innerText = total.toFixed(2);
+        }
+    
+        function removeFromCart(index) {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            cart.splice(index, 1);
+            localStorage.setItem("cart", JSON.stringify(cart));
+            loadCart();
+        }
+    
+        function checkout() {
+            let cart = JSON.parse(localStorage.getItem("cart")) || [];
+            if (cart.length === 0) {
+                alert("Your cart is empty!");
+                return;
+            }
+            window.location.href = "checkout.html";
+        }
+    
+        loadCart();
+    </script>    
+</body>
+</html>
